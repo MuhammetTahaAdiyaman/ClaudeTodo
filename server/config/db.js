@@ -1,14 +1,12 @@
 const { Pool } = require('pg');
+require("dotenv").config();
 
 // Veritabanı bağlantı bilgileri .env dosyasından okunur
 const pool = new Pool({
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-  // Sorgular DB_SCHEMA içindeki tablolarda çalışır (belirtilmezse "public")
-  options: `-c search_path=${process.env.DB_SCHEMA || 'public'}`,
+  connectionString: process.env.DATABASE_URL,
+  options: "-c search_path=todo_db,public",
 });
+
+module.exports = pool;
 
 module.exports = pool;
