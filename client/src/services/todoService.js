@@ -1,9 +1,12 @@
 import axios from 'axios'
 
 // Bütün istekler bu adrese gönderilir
+// const api = axios.create({
+//   baseURL: 'http://localhost:5001/api/todos',
+// })
 const api = axios.create({
-  baseURL: 'http://localhost:5001/api/todos',
-})
+  baseURL: `${import.meta.env.VITE_API_URL}/api/todos`,
+});
 
 export const getTodos = async () => {
   const response = await api.get('/')
